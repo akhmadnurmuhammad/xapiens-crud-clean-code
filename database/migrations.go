@@ -1,11 +1,11 @@
 package database
 
 import (
-	database "xapiens/database/migrations"
+	"xapiens/database/migrations"
 
 	"gorm.io/gorm"
 )
 
 func Migrations(db *gorm.DB) {
-	db.AutoMigrate(&database.Credentials{})
+	db.AutoMigrate(&migrations.Credential{})
 }
