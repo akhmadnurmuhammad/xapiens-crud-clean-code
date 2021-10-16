@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  app:
+    container_name: xapiens
+    build: .
+    restart: on-failure       
+    ports:
+      - 8000:8000
+    environment:
+      -JWT_SECRET: wQTHb9BlJKtJTkoCaR4oCvrihheSi5pO0aMAT8lN
+      -DSN: zc0ILndkXa:ExobOu45yi@tcp(remotemysql.com:3306)/zc0ILndkXa?charset=utf8mb4&parseTime=True&loc=Local
+      -PORT: 8000

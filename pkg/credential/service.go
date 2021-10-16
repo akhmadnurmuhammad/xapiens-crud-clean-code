@@ -71,7 +71,15 @@ func (s *service) DetailCredential(id string) (*entities.Credential, error) {
 	if id == "" {
 		return &credential, errors.New("credentialId required")
 	}
-	return s.repository.FindByIdCredential(id)
+	exists, err := s.repository.FindByIdCredential(id)
+	if err != nil {
+		return &credential, err
+	}
+
+	if exists.CredentialId == "" {
+		return &credential, errors.New("data not found")
+	}
+	return exists, nil
 }
 
 func (s *service) UpdateCredential(c *gin.Context) (*entities.Credential, error) {
