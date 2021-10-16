@@ -181,6 +181,10 @@ func (s *service) Login(c *gin.Context) (*entities.JwtToken, error) {
 		return &entities.JwtToken{}, err
 	}
 
+	if exists.CredentialId == "" {
+		return &entities.JwtToken{}, errors.New("data not found")
+	}
+
 	atClaims := jwt.MapClaims{}
 	atClaims["scope"] = exists.Scope
 	atClaims["platform"] = exists.Platform
